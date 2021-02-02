@@ -14,29 +14,49 @@ class Game
     @current_player = @player_1
   end
 
+  #check lives for each player and decide to continue or finish the game
   def lives_checker
     if (player_1.lives == 0 || player_2.lives == 0)
       self.game_over
     else
-
+      puts "------NEW ROUND------"
+      self.start_game
     end
-
   end
 
 
+
+  #method to run the game every time
   def start_game
     question = Question.new
     player_answer = question.ask_question(current_player)
+    answer_check = question.check_answer(player_answer)
+    
+    
+    if !answer_check
+      puts "answer_check:--------------- #{answer_check}"
+      current_player.lose_life
+      change_current_player
+    end
+
+    puts answer_check  ? "Absolutely Correct!" : "Seriously?! You lost a life!!"
+    puts "#{player_1.name} has #{player_1.lives} lives"
+    puts "#{player_2.name} has #{player_2.lives} lives"
+
+    self.lives_checker
   end
 
-
-  def game_over
-  puts "----------GAME IS OVER----------"
-  puts "#{}"
-  puts "GOOD BYE!"
-  end
-
+  #method to change the current player
   def change_current_player
-    @current_player == @player_1 ? @current_player = @player_2
+    current_player == player_1 ? @current_player = @player_2 : @current_player = @player_1
   end
+
+  #method to finish the game
+  def game_over
+    puts "----------GAME IS OVER----------"
+    winner = player_1.lives == 0 ? player_2 : player_1 
+    puts "#{winner.name} wins with a score of #{winner.lives}/3"
+    puts "GOOD BYE!"
+  end
+
 end

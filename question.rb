@@ -20,6 +20,6 @@ class Question
   # return true if the answer is true
   def check_answer(player_answer)
     correct_answer = num_1 + num_2
-    correct_answer == answer
+    return correct_answer == player_answer
   end
 end
