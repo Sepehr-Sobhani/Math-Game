@@ -4,11 +4,11 @@ require "./game"
 puts "Math GAME"
 puts "Player 1 name?"
 print ">"
-player_1 = $stdin.gets.chomp
+player_1 = gets.chomp
 
 puts "Player 2 name?"
 print ">"
-player_2 = $stdin.gets.chomp
+player_2 = gets.chomp
 
 
 new_game = Game.new(player_1, player_2)
