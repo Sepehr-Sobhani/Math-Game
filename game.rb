@@ -34,12 +34,13 @@ class Game
     
     
     if !answer_check
-      puts "answer_check:--------------- #{answer_check}"
       current_player.lose_life
       change_current_player
+      puts "Seriously?! You lost a life!!"
+    else
+      puts "Absolutely Correct!"
     end
 
-    puts answer_check  ? "Absolutely Correct!" : "Seriously?! You lost a life!!"
     puts "#{player_1.name} has #{player_1.lives} lives"
     puts "#{player_2.name} has #{player_2.lives} lives"
 
